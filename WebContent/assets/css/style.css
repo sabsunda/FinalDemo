@@ -1,0 +1,268 @@
+	body {
+		background: rgba(0,0,0,1);
+		color: #666666;
+		font: 400 13px/1.6 Arial,"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+		word-wrap: break-word;
+		height:2000px;
+	}
+	
+	a, h1, h2, h3, h4, h5 {
+		font-family: "Oswald",Georgia,"Times New Roman",Times,serif;
+		font-weight: normal;
+		line-height: inherit;
+		color:white;
+		margin:0;
+	}
+	
+	.top-wrapper-background .container-fluid{padding:0; background:rgba(0, 0, 0, 0.5);}
+
+	
+	.top-wrapper-background{
+		
+		background: url(../img/society.jpg) left center no-repeat;
+		background-size:cover;
+	}
+
+	#header-wrapper {
+		background: #000;
+		padding-top: 0px;
+		position: relative;
+		z-index: 100;
+		background: rgba(0, 0, 0, 0.62);
+	}
+
+	#myCarousel {
+		position: relative;
+		min-width: 10%;
+		min-height:10%;
+		width: 100%;
+		height: 20%;
+		vertical-align: middle;
+		left:0px;
+		right:0px;
+		
+	}
+	#myCarousel .carousel-inner{width:60%;margin: 80px auto;min-width:250px;min-height:5%;white-space:nowrap;}
+	
+	
+	#myCarousel .carousel-inner .carousel-caption {
+		background: #000;
+		position: relative;
+		z-index: 100;
+		background: rgba(0, 0, 0, 0.62);
+		vertical-align: middle;
+		left:0px;
+		right:0px;
+		height:80px;
+		width:70%;
+		margin:0 auto;
+		text-align:center;
+		bottom:0px; 
+		min-width:20%;
+		min-height:20%;
+		white-space:normal;
+	}
+	
+	#myCarousel .carousel-caption > h3{display:inline}
+	#myCarousel .carousel-inner .carousel-caption .post-meta .dd{float: left; margin:0 auto; }
+	#myCarousel .carousel-inner .carousel-caption .post-meta .dm{float: left;margin:0 auto;display:block;}
+	
+	#myCarousel .carousel-control{margin-top:20px;}
+	#myCarousel .carousel-control{margin-top:20px;}
+	
+	
+	#myCarousel .carousel-control > .fa{font-size: 40px;}
+	
+	
+	.carousel-control.left, .carousel-control.right {
+	   background-image:none !important;
+	   filter:none !important;
+	}
+	
+	.fa:hover {
+		-webkit-box-shadow: 0px 0px 15px 10px rgba(255, 255, 255, .75);
+		box-shadow: 0px 0px 15px 10px rgba(255, 255, 255, .75);
+		border-radius:50%;
+	}
+	.fa {
+		-webkit-box-shadow: 0px 0px 15px 5px rgba(0, 185, 233, .75);
+		box-shadow: 0px 0px 15px 5px rgba(0, 185, 233, .75);
+		-webkit-transition: all 0.7s ease;
+		transition: all 0.7s ease;
+		border-radius:50%;
+	}
+	
+	.fa-plus{
+				-webkit-box-shadow: none;
+		box-shadow: none;
+		
+		
+		border-radius:100%;
+		
+				-webkit-transition: all 0.7s ease;
+		transition: all 0.7s ease;
+
+		
+	}
+	.fa-plus:hover{
+		
+		-webkit-box-shadow:none;
+		box-shadow: none;
+		border-radius:100;
+		text-shadow: 0px 0 15px #fff;
+		
+	}
+	
+	.search input:hover {
+		-webkit-transform:scale(1.2);
+		transform:scale(1.2);
+	}
+	.search input {
+		-webkit-transition: all 0.7s ease;
+		transition: all 0.7s ease;
+	}
+	
+	.text:hover {
+		text-shadow: 0px 0 15px #fff;
+	}
+	.text {
+		-webkit-transition: all 0.7s ease;
+		transition: all 0.7s ease;
+	}
+	
+	.navbar.navbar-no-bg { background: none; }
+
+	ul.navbar-nav {
+		font-size: 16px;
+		color: #fff;
+	}
+	ul.navbar-nav li { padding-top: 8px; padding-bottom: 8px; }
+	ul.navbar-nav li a { display: inline; color: white;-webkit-transition: all 0.7s ease;transition: all 0.7s ease;}
+	 a:hover { color: #fff; opacity: 1; background:none; text-shadow: 0px 0 15px #fff;text-decoration:none;}
+	 a:focus { color: #fff; outline: 0; opacity: 1;  text-shadow: 0px 0 15px #fff;}
+	.navbar-inverse .navbar-nav>li>a{color:white;}
+	.search {
+		width: 230px;
+		height: 30px;
+		position: relative;
+		display:inline;
+		float: left;
+		line-height: 22px;
+	}
+	
+    .search input {
+        position: absolute;
+        width: 0px;
+        float: left;
+        margin-right: 210px;
+        -webkit-transition: all 0.7s ease-in-out;
+        -moz-transition: all 0.7s ease-in-out;
+        -o-transition: all 0.7s ease-in-out;
+        transition: all 0.7s ease-in-out;
+        height: 30px;
+        line-height: 18px;
+        padding: 0;
+        border-style:none;
+		display:inline;
+    }
+
+	.search:hover input, .search input:focus {
+		width: 200px;
+		margin-left: 15px;
+	}
+
+	.search button:hover, .search button:focus {
+		color:#ffffff;
+	}
+
+	.btn {
+		right: 0;
+		background:none;
+	}
+	
+	.dropdown-toggle{border:none;color:white;		font-family: "Oswald",Georgia,"Times New Roman",Times,serif;
+		font-weight: normal;
+		font-size: 16px;
+	}
+
+	ul.dropdown-menu{background-color:black;background: rgba(0, 0, 0, 0.62);z-index: 999999999;}
+
+	.btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open>.dropdown-toggle.btn-info {
+		background:none;
+		text-shadow: 0px 0 15px #fff;
+		
+	}
+	
+	.dropdown-menu .divider {
+		height: 1px;
+		overflow: hidden;
+		background-color: #e5e5e5;
+		padding-top: 0px; padding-bottom: 0px;
+	}
+
+	div.content {
+		background-color: rgba(255, 255, 255, 1);
+		color: #666666;
+		padding-top:10px;
+		padding-left:10px;
+		padding-right:10px;
+		border-style:solid;
+		border-color:rgba(0,0,0,1);
+		border-width:5px;
+		height:100%;
+		font: 400 13px/1.6 Arial,"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+		word-wrap: break-word;
+	}
+	
+	.content .container{background:rgba(,255 255, 255, 0.5);height:1000px;}
+	.post-list{background-color:red;}
+	
+	
+
+	@media (max-width: 767px) {
+		ul.navbar-nav {
+		font-size: 15px;
+		color: #fff;
+	}
+		.nav>li>a {
+			padding:0px 10px; 
+		}
+		
+		.search input {
+			width: 200px;
+			margin-left: 0px;
+		}
+		
+		.btn-info.active, .open>.dropdown-toggle.btn-info {
+			.search {display:none;}
+			
+		}
+
+	
+	}
+
+.deckgrid[deckgrid]::before {
+    /* Specifies that the grid should have a maximum of 3 columns. Each column will have the classes 'column' and 'column-1-3' */
+    content: '3 .column.column-1-3';
+    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+    visibility: hidden;
+}
+
+.deckgrid .column {
+    float: left;
+}
+
+.deckgrid .column-1-3 {
+    width: 33.3%;
+	align:center;
+}
+
+.deckgrid .column-1-1 {
+    width: 100%;
+}
+
+@media screen and (max-width: 480px){
+    .deckgrid[deckgrid]::before {
+        content: '1 .column.column-1-1';
+    }
+}
