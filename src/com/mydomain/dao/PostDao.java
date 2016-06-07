@@ -20,6 +20,13 @@ public class PostDao {
 		return posts;
 	}
 	
+	public List<Post> getPostsByCategory(String category) {
+		Datastore dataStore = ServicesFactory.getMongoDB();
+		List<Post> posts = dataStore.createQuery(Post.class).field("category").equal(category).asList();
+		System.out.println("posts = " + posts);
+		return posts;
+	}
+
 	public void createPost(Post p){
 		Datastore dataStore = ServicesFactory.getMongoDB();
 		dataStore.save(p);

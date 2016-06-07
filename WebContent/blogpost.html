@@ -1,0 +1,36 @@
+<div ng-controller="BlogPostController as blogPostController">
+	<div class="row text-center">
+		<div class = "col-sm-2" >
+			<h1 style = "color:black"> Culture </h1>
+		</div>
+		<div class = "col-sm-2 col-sm-offset-8" >
+			<i class="fa fa-th" style = "width=40px;height:40px" aria-hidden="true">Style</i>
+			<i class="fa fa-language" style = "width=40px;height:40px" aria-hidden="true">Language</i>
+		</div>
+	</div>
+	
+	<div class="row text-center blog-post" dir-paginate="post in posts | filter:search|itemsPerPage:3" ng-init='date=convertJSONDateToJavascriptDate(post.date_created)'>
+		
+	 	<div class = "col-sm-2">
+			<div class="thumbnail">
+				<img class = "blog-image" src="{{post.imageInfos[0].url}}" alt="{{post.imageInfos[0].synopsis}}">
+			</div>	
+		</div>
+		<div class = "col-sm-10">
+			<div class ="blog-info">
+				<p class = "blog-header">{{post.title}}</p>
+				<p class = "blog-date">{{date}}</p>
+				<hr style = "border-style: dashed; border-width:1.5px;border-color:#eee">
+				<p class = "blog-description"> {{post.description}}</p>
+			</div>
+		
+	  </div>
+	</div>
+	
+	<dir-pagination-controls
+       max-size="5"
+       direction-links="true"
+       boundary-links="true" >
+    </dir-pagination-controls>
+
+</div>

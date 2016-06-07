@@ -10,6 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import org.mongodb.morphia.Datastore;
+
 import com.mydomain.dao.PostDao;
 import com.mydomain.model.Post;
 
@@ -22,17 +25,24 @@ public class PostService {
 		this.postDao = postDao;
 	}
 	
-	@GET
+	/*@GET
 	@Path("/{param}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Post getPost(@PathParam("param") String title) {
 		return postDao.getPost(title);
 	}
-
+*/
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Post> getPosts() {
 		return postDao.getPosts();
+	}
+	
+	@GET
+	@Path("/{param}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Post> getPostsByCategory(@PathParam("param") String category) {
+		return postDao.getPostsByCategory(category);
 	}
 	
 	@POST
