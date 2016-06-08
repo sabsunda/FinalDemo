@@ -241,32 +241,15 @@
 	.content .container{background:rgba(,255 255, 255, 0.5);/*height:1000px;*/}
 	.post-list{background-color:red;}
 	
-	.blog-post > .col-sm-10{
-		max-height:100%;
 		
-		/*position:absolute;*/
-		padding-right: 0px;
-		padding-left: 0px;
-		max-width:100%;
-		
-		
-	}
-	.blog-post > .col-sm-2{
-		max-height:100%;
-		height:250px;
-		padding-right: 0px;
-		padding-left: 0px;
-		max-width:100%;
-		
-		
-	}	
 	.blog-info{
-		height:214px;
-		max-height:214px;
+
 		/*position:absolute;*/
 		border-style:solid;
 		border-width:2px;
-		border-color:#eee;
+		/*border-color:#eee;*/
+		border-color:rgba(0,0,0,0.4);
+		width:280px;
 		/*border-left-style:none;*/
 		margin-top:1px;
 		font-family: "Oswald",Georgia,"Times New Roman",Times,serif;
@@ -276,78 +259,48 @@
 		color:rgba(0,0,0,0.9);
 	}
 	
-	.blog-header {
-		font-size: 24px;
+	.blog-info> a:focus, .blog-info>a:hover{
+		color:red;	
 	}
-
-	.thumbnail>img {
-		display: block;
-		max-width: 100%;
-		height: 205px;
+	.blog-date{
+		font-size: 14px;
+		text-align:center;
 	}
-	/*
-	.blog-description{
-		line-height: 2em;
-		height:4em;
+	.blog-image{
+		border-style:solid;
+		border-color:blue;
+		z-index: -1;
+	}
+	
+	.blog-header{
+		font-size: 18px;
+		white-space: nowrap;
 		overflow: hidden;
-		
 		text-overflow: ellipsis;
-		width: 100%;
-		
-		  white-space: nowrap; 
-		  line-height: 2em;
-		height:4em;
-    width: 100%; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  	
-	}*/
+		text-align:center;
+	}
 	
 	.blog-description {
-  /* hide text if it more than N lines  */
-  overflow: hidden;
-  /* for set '...' in absolute position */
-  position: relative; 
-  /* use this value to count block height */
-  line-height: 1.5em;
-  /* max-height = line-height (1.2) * lines max number (3) */
-  max-height: 4.5em; 
-  min-height:3em;
-  /* fix problem when last visible word doesn't adjoin right side  */
-  text-align: justify;  
-  /* place for '...' */
-  margin-right: 1em;
-  padding-right: 1em;
-}
-/* create the ... */
-.blog-description:before {
-  /* points in the end */
-  content: '...';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of block */
-  right: 0;
-  bottom: 0;
-}
-/* hide ... if we have text, which is less than or equal to max lines */
-.blog-description:after {
-  /* points in the end */
-  content: '';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of text */
-  right: 0;
-  /* set width and height */
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  /* bg color = bg color under block */
-  background: white;
-}
+		height:500px;
+		max-height:500px;
+		font-size: 16px;
+		/* hide text if it more than N lines  */
+		overflow: hidden;
+		/* for set '...' in absolute position */
+		position: relative; 
+		/* use this value to count block height */
+		line-height: 1.5em;
+		/* max-height = line-height (1.2) * lines max number (3) */
+		max-height: 1.5em; 
+		min-height:15em;
+		/* fix problem when last visible word doesn't adjoin right side  */
+		/* If the last visible word doesn't adjoin right side then this will fix the problem */
+		text-align: justify !important;  
+		/* place for '...' */
+		/*padding-left: 1em;*/
+		padding-right: 10px;
+	}
+	
 	.nav-links .page-numbers {
 		width: 36px;
 		height: 36px;
@@ -357,6 +310,33 @@ overflow: hidden;
 		text-align: center;
 		display: inline-block;
 		color: black;
+	}
+	
+	/* create the ... */
+	.blog-description:before {
+		/* points in the end */
+		content: '...';
+		/* absolute position */
+		position: absolute;
+		/* set position to right bottom corner of block */
+		right: 0px;
+		bottom: 0px;
+	}
+
+	/* hide ... if we have text, which is less than or equal to max lines */
+	.blog-description:after {
+		/* points in the end */
+		content: '';
+		/* absolute position */
+		position: absolute;
+		/* set width and height */
+		width: 1em;
+		height: 1em;
+		margin-top: 0.2em;
+		right:0px;
+		
+		/* bg color = bg color under block */
+		background: white;
 	}
 
 	@media (max-width: 767px) {
@@ -387,3 +367,12 @@ overflow: hidden;
 
 	
 	}
+	
+	  .masonry-brick {
+                margin: 1em;
+                display: none;
+            }
+
+            .masonry-brick.loaded {
+                display: block;
+            }

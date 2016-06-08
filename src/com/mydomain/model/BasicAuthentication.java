@@ -18,7 +18,9 @@ public class BasicAuthentication {
 	public boolean authenticate(String authCredentials, HttpServletRequest hreq) {
 
 		if (authCredentials == null)
+		{	System.out.println("authCredentials is null");
 			return false;
+		}
 		// header value format will be "Basic encoded string" for Basic
 		// authentication. Example "Basic YWRtaW46YWRtaW4="
 		final String encodedUserPassword = authCredentials.replaceFirst("Basic"+ " ", "");

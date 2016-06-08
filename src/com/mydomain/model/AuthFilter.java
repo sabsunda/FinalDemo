@@ -39,6 +39,9 @@ public class AuthFilter implements Filter {
 			chain.doFilter(req, res);
 			return;
 		}
+		
+		System.out.println("New user");
+		
 		// Not an already authenticated user, check for credentials
 		// Get basic auth header
 		String basicAuthHeader = hreq.getHeader("Authorization");
