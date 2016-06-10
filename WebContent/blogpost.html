@@ -1,16 +1,23 @@
-<div class="masonry-container js-masonry"  data-masonry-options='{ "isFitWidth": true }' ng-controller="BlogPostController as blogPostController">
-	
-	<div masonry preserve-order reload-on-resize column-width="380">
-		<div class="masonry-brick blog-post" dir-paginate="post in posts | filter:search|itemsPerPage:9" ng-init='date=convertJSONDateToJavascriptDate(post.date_created)' style = "margin:0 auto;">
-			<img class = "blog-image" ng-src="{{ post.imageInfos[0].url }}" alt="{{post.imageInfos[0].synopsis}}">
-				<div class ="blog-info">
-					<a href = "#"> <p class = "blog-header" style = "color:black;">{{post.title}}</p></a>
-					<p class = "blog-date">{{date}}</p>
-					<hr style = "border-style: dashed; border-width:1.5px;border-color:red;margin-top: 0px; margin-bottom: 0px;">
-					<p class = "blog-description"> {{post.description}}</p>
+
+	<div class="masonry">
+		<div class="item" dir-paginate="post in posts | filter:search|itemsPerPage:9" ng-init='date=convertJSONDateToJavascriptDate(post.date_created)'>
+			<div class = "blog-post">
+				<div class="post-item">
+					<div class="category">
+						<ul id="post-categories">
+							<a href="">Business</a>
+						</ul>
+					</div>					
+					<img class = "blog-image" ng-src="{{ post.imageInfos[0].url }}" alt="{{post.imageInfos[0].synopsis}}">
+						<div class ="blog-info">
+							<a href = ""> <p class = "blog-header">{{post.title}}</p></a>
+							<p class = "blog-date">{{date}}</p>
+							<p class = "blog-description"> {{post.description}}</p>
+													
+						</div>
+					</img>
 				</div>
-				
-			</img>
+			</div>
 		</div>
 	</div>
 	
@@ -20,4 +27,3 @@
        boundary-links="true" >
     </dir-pagination-controls>
 
-</div>

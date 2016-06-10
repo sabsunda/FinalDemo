@@ -1,0 +1,275 @@
+.post-body > img{
+	height:400px;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.article > * {
+	font-family: 'Ubuntu';
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 300;
+	color:black;
+}
+
+.article  h1 {
+	font-size: 32px;
+}
+
+.article  h3 {
+	font-size: 22px;
+	color:black;	
+}
+
+.article  p {
+	font-size: 18px;
+	font-weight: 200;
+}
+
+.article strong{
+	font-weight: 500;
+	color:blue;
+}
+
+.post-tags a {
+    background: #f2f2f2;
+    line-height: 16px;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 3px 7px;
+    margin: 0 5px 2px 0;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+	color:rgba(0,0,0,0.7);
+}
+
+.post-tags a:hover,.post-tags a:focus{
+	background: blue;
+	color:white;
+}
+
+.author-bio {
+    border: 2px solid #eee;
+    position: relative;
+    padding: 15px 15px 10px 95px;
+    color: black;
+    margin-bottom: 40px;
+}
+
+.author-bio .bio-avatar {
+    float: left;
+    margin: 0 0 8px -80px;
+    width: 64px;
+    height: auto;
+    position: relative;
+}
+
+.author-bio .bio-desc {
+    color: #888;
+    font-size: 15px;
+    line-height: 1.5em;
+}
+.author-bio p {
+    margin-bottom: 8px;
+}
+.author-bio .bio-name {
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.post-nav {
+    border-top: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 40px;
+	overflow: hidden;
+	padding-left: 0px;
+}
+
+.post-nav li i {
+    color: #ccc;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+}
+
+.post-nav li.previous {
+    float: left;
+    -webkit-box-shadow: 1px 0 0 #eee,inset -1px 0 0 #eee;
+    box-shadow: 1px 0 0 #eee,inset -1px 0 0 #eee;
+}
+
+.post-nav li.next {
+    float: right;
+    -webkit-box-shadow: -1px 0 0 #eee,inset 1px 0 0 #eee;
+    box-shadow: -1px 0 0 #eee,inset 1px 0 0 #eee;
+}
+.post-nav li {
+    width: 50%;
+	display: inline;
+	text-align: center;
+}
+.post-nav li.previous a {
+    padding-right: 24px;
+}
+.post-nav li a {
+    position: relative;
+    min-height: 73px;
+    display: block;
+    padding: 16px 40px 24px;
+}
+.post-nav li.previous i {
+    left: 10px;
+}
+.post-nav li a i, .post-nav li a span {
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+
+.post-nav li a span {
+    font-size: 20px;
+    color: #666;
+}
+
+.post-nav li i {
+    color: #ccc;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+}
+.fa {
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.post-nav li a strong {
+    display: block;
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: .5px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.post-nav li a:hover span {
+    color: #444;
+}
+
+.post-nav li.next i {
+    right: 10px;
+}
+
+.group {
+    zoom: 1;
+}
+
+.post-thumbnail {
+    width: 100%;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    transition: all 1s ease;
+    position: relative;
+    margin-bottom: 1em;
+}
+
+.post-thumbnail img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.related-posts {
+    border-bottom: 2px solid #eee;
+    margin-bottom: 40px;
+	overflow: hidden;
+	padding-left: 0px;
+}
+.related-posts li {
+    width: 33.3%;
+    float: left;
+    display: inline;
+}
+.related-posts .post {
+    border-right: 1px solid transparent;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+
+.related-posts .related-inner {
+    padding: 0 20px 0 0;
+}
+#reply-title, .comments-nav {
+    margin-bottom: 20px;
+}
+
+#comments {
+    margin-top: 20px;
+}
+#respond {
+    position: relative;
+}
+
+#commentform {
+    background: #f1f1f1;
+    padding: 10px 20px 20px;
+    margin-bottom: 15px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#commentform p.comment-form-comment, #commentform p.comment-form-url {
+    clear: both;
+}
+#commentform label {
+    padding: 6px 0;
+    font-weight: 600;
+    display: block;
+}
+#commentform textarea {
+    height: 100px;
+}
+#commentform input[type=text], #commentform textarea {
+    max-width: 100%;
+    width: 100%;
+}
+#commentform p.comment-form-author {
+    width: 48%;
+    float: left;
+}
+#commentform p.comment-form-email {
+    width: 48%;
+    float: right;
+}
+#commentform p.form-submit, .logged-in #commentform p.comment-form-comment {
+    margin-top: 10px;
+}
+.form-submit> input{
+	background-color: #0066bf;
+}
+.comment-subscription-form .subscribe-label {
+    display: inline!important;
+}
+#commentform label {
+    padding: 6px 0;
+    font-weight: 600;
+    display: block;
+}
+
+#reply-title, .heading {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+	margin-bottom: 15px;
+}
+
+label .required {
+    color: #3b8dbd;
+}

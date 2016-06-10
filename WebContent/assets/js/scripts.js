@@ -6,9 +6,9 @@
 	app.config(['$routeProvider', 
 	    function($routeProvider){
 			$routeProvider.
-				when('/signup',{
-					templateUrl:'signup.html',
-					controller:'SignupController'
+				when('/BlogPostInfo',{
+					templateUrl:'BlogPostInfo.html',
+					controller:'BlogPostController'
 				}).
 				when('/blogpost',{
 					templateUrl:'blogpost.html',
@@ -259,6 +259,11 @@
 		$scope.getPosts();
 
 	});
+
+	app.controller('BlogPostInfoController',function($http, $log, $scope){
+
+	});
+
 	
 })();
 
