@@ -20,7 +20,18 @@
 		}
 	]);
 	
-	app.run(function($rootScope) {
+	app.service('article', function() {
+		this.getPosts = function($log,$rootScope,$http) {
+			$log.debug("Getting all blog posts...");
+			$http.get('rest/post').success(function(data, status, headers, config) {
+				$rootScope.posts = data;
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to get blog posts...");
+			});
+		}
+	});
+	
+	app.run(function($rootScope,article,$log,$http) {
 		$rootScope.posts = "";
 		$rootScope.currentArticle = "";
 		$rootScope.convertJSONDateToJavascriptDate = function(jsonDate){
@@ -37,9 +48,27 @@
 			newdate = day + " " + monthNames[month] + " " + year;
 			return newdate;
 		}
+		article.getPosts($log,$rootScope,$http);
 	});
 	
-	app.controller('TopWrapperController',function($http, $log, $scope, $window){
+	Array.prototype.contains = function(v) {
+		for(var i = 0; i < this.length; i++) {
+			if(this[i].tag === v.tag) return true;
+		}
+		return false;
+	};
+
+	Array.prototype.unique = function() {
+		var arr = [];
+		for(var i = 0; i < this.length; i++) {
+			if(!arr.contains(this[i])) {
+				arr.push(this[i]);
+			}
+		}
+		return arr; 
+	}
+
+	app.controller('TopWrapperController',function($http, $log, $scope, $window,$rootScope,$location,article){
 		var controller = this;
 		$scope.categories=[{name:"Society", info:"Culture, Social Openion ...", urlPath: "assets/img/society.jpg"},
 							{name:"Technology", info:"Networking, Cloud Computing, Internet of Things...",urlPath: "assets/img/technology.jpg"},
@@ -51,12 +80,21 @@
 		$scope.signupText = "";
 		$scope.showSignUpPage = false;
 		
+		$scope.getArticle = function(){
+			article.getPosts($log, $rootScope,$http);
+			$location.path("/blogpost");
+		}
+		
 		$http.get('rest/signup').success(function(data, status, headers, config) {
 			$scope.signupText = "Signout";
 		}).error(function(data, status, headers, config) {
 			
 			$scope.signupText = "Signup";
 		});
+		
+		$scope.disableSignupPage = function(){
+			$scope.showSignUpPage = false;
+		}
 		
 		$scope.toggleSignUpSignOut = function(data){
 			
@@ -263,19 +301,7 @@
 		$scope.currentPage = 0;
 		$scope.itemsPerPage = 9;
 		
-		$scope.getPosts = function() {
-			$log.debug("Getting all blog posts...");
-			$http.get('rest/post').success(function(data, status, headers, config) {
-				$rootScope.posts = data;
-			}).error(function(data, status, headers, config) {
-				$log.debug("Failed to get blog posts...");
-			});
-		}
-
-
-		$scope.article = "";
 		$scope.showArticle = function(index){
-			$scope.article = $rootScope.posts[index];	
 			$rootScope.currentArticle = $scope.currentPage* $scope.itemsPerPage+ index;
 			
 			var Indata = {'field': "currentArticle", 'value': $rootScope.currentArticle};
@@ -285,21 +311,41 @@
 			}).error(function(data, status, headers, config) {
 				$log.debug("Failed to save current article index in session object...");
 			});
-
+			
 			$location.path("/BlogPostInfo");
 		}
-		
 		
 		$scope.pageChangeHandler = function(num) {
 			console.log('Article page changed to ' + num);
 			$scope.currentPage = num-1;
 		};
+		
+		$scope.displayPostByCategory = function(post){
+			var category = post.category;
+			var url = 'rest/post/' + category;
+			$http.get(url).success(function(data, status, headers, config) {
+				$rootScope.posts = data;
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to get blog posts...");
+			});
+		};
+		
+		$scope.displayPostByCategoryAndTag = function(post){
+			var category = post.category;
+			var tag = post.tag;
+			var url = 'rest/post/' + category +'/'+tag;
+			$http.get(url).success(function(data, status, headers, config) {
+				$rootScope.posts = data;
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to get blog posts...");
+			});			
+			
+		}
   
-		$scope.getPosts();
-
 	});
 
-	app.controller('BlogPostInfoController',function($http, $log, $scope,$rootScope,$window){
+	app.controller('BlogPostInfoController',function($http, $log, $scope,$rootScope,$window,$location,$route, article){
+		$scope.uniquePosts = [];
 		/*if( $rootScope.posts === ""){
 			$http.get('rest/session/currentArticle').success(function(data, status, headers, config) {
 				$log.debug("Successfully got the currentArticle from session object...");
@@ -319,10 +365,99 @@
 			});
 		}*/
 		
+		$scope.p_article_index = ($rootScope.currentArticle - 1) < -1? -1:($rootScope.currentArticle-1);
+		$scope.n_article_index = ($rootScope.currentArticle + 1) >= $rootScope.posts.length?$rootScope.posts.length:($rootScope.currentArticle+1);
 		
+		$scope.updateNextArticleIndex = function() {
+			if($scope.n_article_index + 1 > $rootScope.posts.length){
+				$scope.n_article_index = $rootScope.posts.length;
+			}else{
+				$rootScope.currentArticle = $scope.n_article_index;
+				$route.reload();
+				$scope.n_article_index = $scope.n_article_index+1;
+				$scope.p_article_index = ($scope.p_article_index +1) > $rootScope.posts.length? $rootScope.posts.length: ($scope.p_article_index+1);
+			}
+		};
+		
+		$scope.updatePreviousArticleIndex = function() {			
+			if($scope.p_article_index - 1 < -1 ){
+				$scope.p_article_index = -1;
+				
+			}else{
+				$rootScope.currentArticle = $scope.p_article_index;	
+				$route.reload();
+				$scope.p_article_index = $scope.p_article_index-1;
+				$scope.n_article_index = ($scope.n_article_index - 1) < 0? 0: $scope.n_article_index - 1;
+			}
+		};
+		
+		
+		$scope.getuniquePosts = function(args) {
+			var url = 'rest/post/' + args;
 			
+			$http.get(url).success(function(data, status, headers, config) {
+				
+				$scope.uniquePosts = data.unique();
+				
+				
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to get blog posts...");
+			});
+			
+		}
+		
+		$scope.helloWorld = function(){
+			var url = 'rest/post/' + args;
+		}
+		
+		$scope.displayHomeByCategoryAndTag = function(post){
+			var category = post.category;
+			var tag = post.tag;
+			var url = 'rest/post/' + category +'/'+tag;
+			$http.get(url).success(function(data, status, headers, config) {
+				$rootScope.posts = data;
+				$location.path("/blogpost");
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to get blog posts...");
+			});			
+		}
+
+		$scope.updateComments = function(post){			
+			var comment = {};
+			
+			comment.user = $scope.author;
+			comment.message = $scope.comment;
+			comment.email = $scope.email;
+			comment.date_created = new Date();
+			comment.last = "";
+			
+			post.id = {};
+			if( post.comments === null){
+				post.comments = [];
+				post.comments[0] = comment;
+			}else{
+				post.comments[post.comments.length] = comment;
+			}
+			
+			
+			var myJsonString = angular.toJson(post);
+				
+		  	$http.put('rest/post',myJsonString).success(function(data, status, headers, config) {
+				$log.debug("Successfully updated the comments..." + $scope.subscribe_comments + $scope.subscribe_blog);
+				$scope.author = "";
+				$scope.comment = "";
+				$scope.email = "";
+				$scope.url = "";
+				$scope.subscribe_comments = null;
+				$scope.subscribe_blog = null;
+			
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed update comments...");
+			});
+
+			
+		} 
 
 	});
-
 	
 })();

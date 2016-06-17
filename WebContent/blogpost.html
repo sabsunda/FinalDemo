@@ -6,12 +6,15 @@
 					<img class = "blog-image" ng-src="{{ post.imageInfos[0].url }}" alt="{{post.imageInfos[0].synopsis}}">
 						<div class ="blog-info">
 							<div class="post-meta group">
-								<p class="post-category"><a href="" rel="category tag">{{post.category}}</a> / <a href="" rel="category tag">{{post.tags[0]}}</a></p>
+								<p class="post-category">
+									<a href ng-click = 'displayPostByCategory(post)' rel="category tag">{{post.category}}</a>
+									/ <a href ng-click = 'displayPostByCategoryAndTag(post)'rel="category tag">{{post.tag}}</a>
+								</p>
 								<p class="post-date">
 									<time class="published updated">{{date}}</time>
 								</p>
 							</div>
-							<a href = "" ng-click = "showArticle($index)"> <h2 class = "blog-header">{{post.title}}</h2></a>
+							<a href = "" ng-click = "showArticle($index);"> <h2 class = "blog-header">{{post.title}}</h2></a>
 							<!--<p class = "blog-date">{{date}}</p>-->
 							<p class = "blog-description"> {{post.descriptions[0].description === "" ? post.descriptions[1].description : post.descriptions[0].description}}</p>
 													

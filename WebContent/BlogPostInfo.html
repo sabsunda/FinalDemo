@@ -10,37 +10,38 @@
 		<img ng-show = "{{ paragraph.urls === null ? false:true}}" ng-src="{{paragraph.urls[0].url}}" class="img-responsive" alt="">
 		<p>{{paragraph.description}} </p>
 	</div>
-	<p class = "post-tags">
-		<span>Tags:</span>
-		<a href = "">India</a>
-		<a href = "">Kerala</a>
+	<p class = "post-tags" ng-init = 'getuniquePosts(posts[currentArticle].category)'>
+		Tags:
+		<a href ng-click = 'displayHomeByCategoryAndTag(tag)' id = "tag" ng-repeat="tag in uniquePosts" style="color:black">{{tag.tag}}</a>
 	</p>
 	
 	<div class = "author-bio">
 		<div class = "bio-avatar">
-			<img src="assets/img/karthick.jpeg" class="img-rounded img-responsive" alt="Smiley face"> </img>
+			<img ng-src="{{article.thumbnail}}" class="img-rounded img-responsive" alt="Smiley face"> </img>
 		</div>
-		<p class = "bio-name">Jeyagopal C</p>
-		<p class = "bio-description"> Karthik Reddy has been traveling around the world since completing his M.B.A in 2012. He is passionate about photography, trying out new food, meeting new people, experiencing different cultures and explore places solo.</p>
+		<p class = "bio-name">{{article.by}}</p>
+		<p class = "bio-description"> {{article.bio}}</p>
 	</div>
 
-	
-	<ul class = "post-nav group">
-		<li class = "next" ng-init='n_article=currentArticle+1' ng-show = "{{ currentArticle+1 > posts.length-1 ? false:true}}" >
-			<a href = "" ng-click = 'n_article=currentArticle+1'> 
+		
+	<ul class = "post-nav group" >
+		<li class = "next">
+			<a href ng-click ='updateNextArticleIndex()'> 
 				<i class="fa fa-chevron-right" aria-hidden="true"></i>
 				<strong> Next Story </strong>
-				<span> {{posts[n_article].title}}</span>
+				<span> {{posts[n_article_index].title}}</span>
 			</a>
 		</li>
-		<li class = "previous" ng-init='p_article=currentArticle-1' ng-show = "{{ currentArticle-1 < 0 ? false:true}}"> 
-			<a href = "" ng-click = 'p_article=currentArticle-1'> 
+		<li class = "previous"> 
+			<a href ng-click ='updatePreviousArticleIndex()'> 
 				<i class="fa fa-chevron-left" aria-hidden="true"></i>
 				<strong> Previous Story </strong>
-				<span> {{posts[p_article].title}}</span>
+				<span> {{posts[p_article_index].title}}</span>
 			</a>
 		</li>
 	</ul>
+	
+	
 	
 	
 
@@ -83,7 +84,7 @@
 					</a>			
 				</div>
 				<div class="related-inner"> 
-					<p class="post-title"> Sunday Photo Story â€“ Puri Rath Yatra</p>
+					<p class="post-title"> Sunday Photo Story – Puri Rath Yatra</p>
 					<p class = "published-date"> 20 AUGUEST, 2012</p> 
 				</div>
 			</article>
@@ -91,41 +92,85 @@
 	</ul>
 	-->
 	<section id="comments">
+		<h3 class="heading">2 Responses</h3>
+
+		<ul class="comment-tabs group">
+			<li><a href="#commentlist-container"><i class="fa fa-comments-o"></i>Comments<span>2</span></a></li>
+			<li><a href="#pinglist-container"><i class="fa fa-share"></i>Pingbacks<span>0</span></a></li>
+		</ul>
+		<div id="commentlist-container" class="comment-tab" style="display: block;">
+			<ol class="commentlist">
+				<li class="comment even thread-even depth-1 parent" id="comment-14085">
+					<div id="div-comment-14085" class="comment-body">
+						<div class="comment-author vcard">
+							<img alt="" src="" srcset="" class="avatar avatar-96 photo" height="96" width="96" originals="96" scale="2"> 
+							<cite class="fn">Deepa</cite>
+							<span class="says">says:</span> </div>
+						</div>
+						<div class="comment-meta commentmetadata"><a href="">
+							<p>Good photo…sai,</p>
+							-<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="" onclick="" aria-label="Reply to Deepa">Reply</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ol>
+			
+			<ul class="children">
+				<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-14090">
+					<div id="div-comment-14090" class="comment-body">
+						<div class="comment-author">
+							<img alt="" src="" srcset="" class="avatar avatar-96 photo" height="96" width="96" originals="96" scale="2">
+							<cite class="fn"><a href="" rel="external nofollow" class="url">Sai Karthik Reddy Mekala</a></cite>
+							<span class="says">says:</span> 
+						</div>
+						<div class="comment-meta commentmetadata">
+							<p>Thanks Deepa/</p>
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="" onclick="" aria-label="Reply to Sai Karthik Reddy Mekala">Reply</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
 		<div id="respond" class="comment-respond">
 			<h3 id ="reply-title" class="reply-title"> Leave a reply </h3> 
 		</div>
 		<form id="commentform" class="comment-form" action="" method="POST">
 			<p class = "comment-form-comment">
 				<label for="comment"> Comment </label>
-				<textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required = "true" required="required"> </textarea>
+				<textarea id="comment" name="comment" ng-model="comment" cols="45" rows="8" maxlength="65525" aria-required = "true" required="required"> </textarea>
 			</p>
 			
 			<p class = "comment-form-author">
 				<label for="author">
 					Name<span class="required">*</span>
 				</label>
-				<input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+				<input id="author" name="author" ng-model="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
 			</p>
 			<p class="comment-form-email">
 				<label for="email">
 					Email<span class="required">*</span>
 				 </label>
-				<input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required">
+				<input id="email" name="email" ng-model="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required">
 			</p>
 			<p class="comment-form-url">
 				<label for="url">Website</label>
-				<input id="url" name="url" type="text" value="" size="30" maxlength="200">
+				<input id="url" name="url" ng-model="url" type="text" value="" size="30" maxlength="200">
 			</p>
-			<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> 
-				
+			<p class="form-submit">
+				<input name="submit" type="button" id="submit" class="submit" ng-click = "updateComments(article)" value="Post Comment"> 
 			</p>
 
 			<p class="comment-subscription-form">
-				<input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> 
+				<input type="checkbox" name="subscribe_comments" ng-model="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> 
 					<label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label>
 			</p>
 			<p class="comment-subscription-form">
-				<input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;">
+				<input type="checkbox" name="subscribe_blog" id="subscribe_blog" ng-model="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;">
 					<label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label>
 			</p> 	
 		</form>
