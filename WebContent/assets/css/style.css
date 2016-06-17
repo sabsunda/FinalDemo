@@ -1,9 +1,7 @@
 	body {
-		/*background: rgba(0,0,0,1);*/
 		color: #666666;
 		font: 400 13px/1.6 Arial,"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
 		word-wrap: break-word;
-		/*height:1500px;*/
 	}
 	
 	a, h1, h2, h3, h4, h5 {
@@ -13,91 +11,10 @@
 		color:white;
 		margin:0;
 	}
-	
-	.top-wrapper-background .container-fluid{padding:0; background:rgba(0, 0, 0, 0.5);}
-	.navbar-inverse {
-		border-color:white;
-	}
-
-	
-	.top-wrapper-background{
-		
-		background: url(../img/society.jpg) left center no-repeat;
-		background-size:cover;
-	}
-
-	#header-wrapper {
-		background: #000;
-		padding-top: 0px;
-		position: relative;
-		z-index: 100;
-		background: rgba(0, 0, 0, 0.62);
+	.navbar.navbar-no-bg {
+		background: rgba(0,0,0,0.8);
 	}
 	
-	header {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		
-		height: 50px;
-	}
-	html body .container-fluid.body-content {
-		position: absolute;
-		top: 50px;
-		bottom: 30px;
-		right: 0;
-		left: 0;
-		overflow-y: auto;
-	}
-
-	#myCarousel {
-		position: relative;
-		min-width: 10%;
-		min-height:10%;
-		width: 100%;
-		height: 20%;
-		vertical-align: middle;
-		left:0px;
-		right:0px;
-		
-	}
-	#myCarousel .carousel-inner{width:60%;margin: 80px auto;min-width:250px;min-height:5%;white-space:nowrap;}
-	
-	
-	#myCarousel .carousel-inner .carousel-caption {
-		background: #000;
-		position: relative;
-		z-index: 100;
-		background: rgba(0, 0, 0, 0.62);
-		vertical-align: middle;
-		left:0px;
-		right:0px;
-		height:80px;
-		width:70%;
-		margin:0 auto;
-		text-align:center;
-		bottom:0px; 
-		min-width:20%;
-		min-height:20%;
-		white-space:normal;
-	}
-	
-	#myCarousel .carousel-caption > h3{display:inline}
-	#myCarousel .carousel-inner .carousel-caption .post-meta .dd{float: left; margin:0 auto; }
-	#myCarousel .carousel-inner .carousel-caption .post-meta .dm{float: left;margin:0 auto;display:block;}
-	
-	#myCarousel .carousel-control{margin-top:20px;}
-	#myCarousel .carousel-control{margin-top:20px;}
-	
-	
-	#myCarousel .carousel-control > .fa{font-size: 40px;}
-	
-	
-	.carousel-control.left, .carousel-control.right {
-	   background-image:none !important;
-	   filter:none !important;
-	}
 	
 	.search > .fa:hover {
 		-webkit-box-shadow: 0px 0px 15px 10px rgba(255, 255, 255, .75);
@@ -200,31 +117,18 @@
 		background:none;
 	}
 	
-	.dropdown-toggle{border:none;color:white;		font-family: "Oswald",Georgia,"Times New Roman",Times,serif;
-		font-weight: normal;
-		font-size: 16px;
-	}
-
-	ul.dropdown-menu{background-color:black;background: rgba(0, 0, 0, 0.62);z-index: 999999999;}
 
 	.btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open>.dropdown-toggle.btn-info {
 		background:none;
 		text-shadow: 0px 0 15px #fff;
 		
 	}
-	
-	.dropdown-menu .divider {
-		height: 1px;
-		overflow: hidden;
-		background-color: #e5e5e5;
-		padding-top: 0px; padding-bottom: 0px;
-	}
 
 	div.content {
 		background-color: rgba(255, 255, 255, 0.5);
 		
 		color: #666666;
-		padding-top:10px;
+		padding-top:50px;
 		padding-left:10px;
 		padding-right:10px;
 		border-style:solid;
@@ -238,9 +142,18 @@
 		word-wrap: break-word;
 	}
 	
-	.content .container{background:rgba(,255 255, 255, 0.5);/*height:1000px;*/}
+	.content .container{background:rgba(255 255, 255, 0.5);}
 	.post-list{background-color:red;}
 	
+.navbar-inverse {
+    background-color: white;
+	border-color:white;
+}
+
+#header-wrapper, .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    background-color: rgba(0, 0, 0, 0.63);
+}
+
 
 	@media (max-width: 767px) {
 		ul.navbar-nav {

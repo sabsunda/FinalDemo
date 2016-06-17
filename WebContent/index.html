@@ -45,173 +45,129 @@
     </head>
 
     <body>
-		<!-- Top menu -->
-		<nav class="navbar top-wrapper navbar-inverse navbar-no-bg" role="navigation" ng-controller="TopWrapperController" >
-			<div class = "top-wrapper-background">
-				
-				<div id="header-wrapper">
-					<div class="container">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="index.html"><h1>My Blog</h1></a>
-						</div>
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse" id="top-navbar-1">
-							<ul class="nav navbar-nav navbar-right">
-							
-								<li>
-									<a href=""><strong>Home</strong></a>
-									<a id = "signup" href="" ng-click = "toggleSignUpSignOut(signupText)"><strong>{{signupText}}</strong></a>
-									<i class="fa fa-plus" aria-hidden="true">Post</i>
-									<a href=""><strong>Contact</strong></a>
-								</li>
-								
-								<li>
-									<div class="search">
-										<button type="submit" class="btn btn-info fa fa-search"></button>
-										<input type="text" ng-model="search" class="form-control input-sm" maxlength="64" placeholder="Search" />
-									</div>
-								</li>
-							</ul>
-							
-						</div>
+		<div ng-controller="TopWrapperController">
+			<!-- Top menu -->
+			<nav class="navbar top-wrapper navbar-inverse navbar-fixed-top" role="navigation" >
+				<div class="container" id="header-wrapper">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.html"><h1>My Blog</h1></a>
 					</div>
-				</div>
-				
-				<div class="container-fluid">
-					
-					<div class = "my_slider">
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="top-navbar-1">
+						<ul class="nav navbar-nav navbar-right">
 						
-						<div id="myCarousel" class="carousel slide" data-ride="carousel">
-							<!-- Indicators -->
-							<ol class="carousel-indicators">
-								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-								<li data-target="#myCarousel" data-slide-to="1"></li>
-								<li data-target="#myCarousel" data-slide-to="2"></li>
-								<li data-target="#myCarousel" data-slide-to="3"></li>
-							</ol>
-
-							<!-- Wrapper for slides -->
-							<div class="carousel-inner" role="listbox">
-									
-								<div class="item" ng-class="{active:!$index}" ng-repeat="category in categories">
-									<div class="carousel-caption">
-										<p>{{category.info}}</p>
-										<h3><a href="">{{category.name}} </a></h3>
-									</div>
+							<li>
+								<a href=""><strong>Home</strong></a>
+								<a id = "signup" href="" ng-click = "toggleSignUpSignOut(signupText)"><strong>{{signupText}}</strong></a>
+								<i class="fa fa-plus" aria-hidden="true">Post</i>
+								<a href=""><strong>Contact</strong></a>
+							</li>
+							
+							<li>
+								<div class="search">
+									<button type="submit" class="btn btn-info fa fa-search"></button>
+									<input type="text" ng-model="search" class="form-control input-sm" maxlength="64" placeholder="Search" />
 								</div>
-								
-								<!-- Left and right controls -->
-								<a class="left carousel-control" href="#myCarousel" role="button" target="_self" data-slide="prev" ng-click = "toggleSignUpSignOut()">
-									<span class="fa fa-chevron-circle-left" aria-hidden="true"></span>
-									<span class="sr-only">Previous</span>
-								</a>
-								<a class="right carousel-control" href="#myCarousel" role="button" target="_self" data-slide="next" ng-click = "toggleSignUpSignOut()">
-									<span class="fa fa-chevron-circle-right" aria-hidden="true"></span>
-									<span class="sr-only">Next</span>
-								</a>
-							</div>
-						</div>		
+							</li>
+						</ul>
+						
 					</div>
 				</div>
-				
-			</div>
-			
+			</nav>
+	
 
 			<div class = "signup-page" ng-show = "showSignUpPage">
-					<div id="successful_login" class="fix-middle">
-					  <div class="container text-center">
-						<h1>Welcome back to the internet!</h1>
-						<p>You've successfully managed to log into a nonexistant account in order to test a login dialog box.<br> If you like it, you are welcomed to use it wherever you want, no strings attached.<br><br><a href="#" class="link dialog-reset">Rerun the whole thing.</a></p>
-					  </div>
-					</div>
-					<div id="successful_registration" class="fix-middle">
-					  <div class="container text-center">
-						<h1>Welcome to the internet!</h1>
-						<p>You've successfully managed to register for a nonexistant account in order to test a registration dialog box.<br> If you like it, you are welcomed to use it wherever you want, no strings attached.<br><br><a href="#" class="link dialog-reset">Rerun the whole thing.</a></p>
-					  </div>
-					</div>
-
-														
-					<div id="dialog" class="dialog dialog-effect-in">
-					  <div class="dialog-front">
-						<div class="dialog-content">
-						  <form id="login_form" class="dialog-form" action="" method="POST">
-							<fieldset>
-							  <legend>Log in</legend>
-							  <div class="form-group">
-								<label for="user_username" class="control-label">Username:</label>
-								<input type="text" id="user_username" class="form-control" name="user_username" autofocus/>
-							  </div>
-							  <div class="form-group">
-								<label for="user_password" class="control-label">Password:</label>
-								<input type="password" id="user_password" class="form-control" name="user_password"/>
-							  </div>
-							  <div class="text-center pad-top-20">
-								<p>Have you forgotten your<br><a href="#" class="link"><strong>username</strong></a> or <a href="" class="link"><strong>password</strong></a>?</p>
-							  </div>
-							  <div class="pad-top-20 pad-btm-20">
-								<input type="submit" class="btn btn-default btn-block btn-lg" value="Continue">
-							  </div>
-							  <div class="text-center">
-								<p>Do you wish to register<br> for <a href="" class="link user-actions"><strong>a new account</strong></a>?</p>
-							  </div>
-							</fieldset>
-						  </form>
-						</div>
-					  </div>
-					  <div class="dialog-back">
-						<div class="dialog-content">
-						  <form id="register_form" class="dialog-form" action="" method="POST">
-							<fieldset>
-							  <legend>Register</legend>
-							  <div class="form-group">
-								<label for="user_username" class="control-label">Username:</label>
-								<input type="text" id="user_username" class="form-control" name="user_username"/> 
-							  </div>
-							  <div class="form-group">
-								<label for="user_password" class="control-label">Password:</label>
-								<input type="password" id="user_password" class="form-control" name="user_password"/>
-							  </div>
-							  <div class="form-group">
-								<label for="user_cnf_password" class="control-label">Confirm password:</label>
-								<input type="password" id="user_cnf_password" class="form-control" name="user_cnf_password"/>
-							  </div>
-							  <div class="form-group pad-top-20 form-group-checkbox">
-								<div class="checkbox">
-								  <label>
-									<input type="checkbox" id="user_terms" name="user_terms">
-									I have read and I agree with the Terms and Conditions
-								  </label>
-								</div>
-							  </div>
-							  <div class="pad-btm-20">
-								<input type="submit" class="btn btn-default btn-block btn-lg" value="Continue"/>
-							  </div>
-							  <div class="text-center">
-								<p>Return to <a href="" class="link user-actions"><strong>log in page</strong></a>?</p>
-							  </div>
-							</fieldset>
-						  </form>
-						</div>
-					  </div>
-					</div>				
+				<div id="successful_login" class="fix-middle">
+				  <div class="container text-center">
+					<h1>Welcome back to the internet!</h1>
+					<p>You've successfully managed to log into a nonexistant account in order to test a login dialog box.<br> If you like it, you are welcomed to use it wherever you want, no strings attached.<br><br><a href="#" class="link dialog-reset">Rerun the whole thing.</a></p>
+				  </div>
 				</div>
-			
+				<div id="successful_registration" class="fix-middle">
+				  <div class="container text-center">
+					<h1>Welcome to the internet!</h1>
+					<p>You've successfully managed to register for a nonexistant account in order to test a registration dialog box.<br> If you like it, you are welcomed to use it wherever you want, no strings attached.<br><br><a href="#" class="link dialog-reset">Rerun the whole thing.</a></p>
+				  </div>
+				</div>
+
+													
+				<div id="dialog" class="dialog dialog-effect-in">
+				  <div class="dialog-front">
+					<div class="dialog-content">
+					  <form id="login_form" class="dialog-form" action="" method="POST">
+						<fieldset>
+						  <legend>Log in</legend>
+						  <div class="form-group">
+							<label for="user_username" class="control-label">Username:</label>
+							<input type="text" id="user_username" class="form-control" name="user_username" autofocus/>
+						  </div>
+						  <div class="form-group">
+							<label for="user_password" class="control-label">Password:</label>
+							<input type="password" id="user_password" class="form-control" name="user_password"/>
+						  </div>
+						  <div class="text-center pad-top-20">
+							<p>Have you forgotten your<br><a href="#" class="link"><strong>username</strong></a> or <a href="" class="link"><strong>password</strong></a>?</p>
+						  </div>
+						  <div class="pad-top-20 pad-btm-20">
+							<input type="submit" class="btn btn-default btn-block btn-lg" value="Continue">
+						  </div>
+						  <div class="text-center">
+							<p>Do you wish to register<br> for <a href="" class="link user-actions"><strong>a new account</strong></a>?</p>
+						  </div>
+						</fieldset>
+					  </form>
+					</div>
+				  </div>
+				  <div class="dialog-back">
+					<div class="dialog-content">
+					  <form id="register_form" class="dialog-form" action="" method="POST">
+						<fieldset>
+						  <legend>Register</legend>
+						  <div class="form-group">
+							<label for="user_username" class="control-label">Username:</label>
+							<input type="text" id="user_username" class="form-control" name="user_username"/> 
+						  </div>
+						  <div class="form-group">
+							<label for="user_password" class="control-label">Password:</label>
+							<input type="password" id="user_password" class="form-control" name="user_password"/>
+						  </div>
+						  <div class="form-group">
+							<label for="user_cnf_password" class="control-label">Confirm password:</label>
+							<input type="password" id="user_cnf_password" class="form-control" name="user_cnf_password"/>
+						  </div>
+						  <div class="form-group pad-top-20 form-group-checkbox">
+							<div class="checkbox">
+							  <label>
+								<input type="checkbox" id="user_terms" name="user_terms">
+								I have read and I agree with the Terms and Conditions
+							  </label>
+							</div>
+						  </div>
+						  <div class="pad-btm-20">
+							<input type="submit" class="btn btn-default btn-block btn-lg" value="Continue"/>
+						  </div>
+						  <div class="text-center">
+							<p>Return to <a href="" class="link user-actions"><strong>log in page</strong></a>?</p>
+						  </div>
+						</fieldset>
+					  </form>
+					</div>
+				  </div>
+				</div>				
+			</div>
 			<div class="content">
 				<div class ="container">
-					
 					<div ng-view></div>
-					
 				</div>
-			</div>	
-		</nav>
-        
+			</div>
+			
+		</div>	
     </body>
 
 </html>

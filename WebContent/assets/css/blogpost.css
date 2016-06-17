@@ -1,4 +1,9 @@
 
+	
+	.blog-info h2{
+		color:#444;
+		font-weight:500;
+	}
 	.masonry-container{
 		margin:0 auto;
 		width:1200px;
@@ -8,13 +13,17 @@
 		padding-bottom:20px;
 
 	}
+	.post-category a:hover, .post-category a :focus{
+		color: #444;
+		font-weight: 500;
+	}
 	
 	.post-item{
 
 		/*background-color: #f74040;*/
 		/*background-color:#ddd;*/
-		background-color:white;
-		box-shadow: 0 0 1px #adadad;
+		/*background-color:white;
+		box-shadow: 0 0 1px #adadad;*/
 		
 	}
 	
@@ -44,34 +53,66 @@
 		/*width:350px;*/
 		/*border-left-style:none;*/
 		margin-top:1px;
-		font-family: "Oswald",Georgia,"Times New Roman",Times,serif;
-		font-weight: normal;
-		line-height: inherit;
+		/*font-family: "Oswald",Georgia,"Times New Roman",Times,serif;*/
+		font-family: 'Ubuntu';
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 200;
+		color:black;
 		font-size: 18px;
-		color:rgba(0,0,0,0.9);
+		
 		padding-bottom: 20px;
 	}
 	
-	.blog-info> a:focus, .blog-info>a:hover{
+	/*.blog-info> a:focus, .blog-info>a:hover{
 		color:red;	
-	}
+	}*/
+	
 	.blog-date{
 		font-size: 14px;
-		text-align:center;
-
+		text-align:left;
+		text-transform: uppercase;
 		border-bottom: 1px dashed #ddd;
-		padding: 8px 20px;
-
+		/*padding: 8px 20px;*/
+		color:#bbb;
+		font-weight: 400;
 	}
 	
 	.blog-header{
-		font-size: 18px;
-		white-space: nowrap;
+		font-size: 24px;
+		/*white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis;
-		text-align:center;
-		color:black;
+		text-overflow: ellipsis;*/
+		text-align:left;
+		color:#444;
+		font-family: 'Ubuntu';
+		font-weight:500;
 	}
+	.blog-header:hover,	.blog-header:focus{
+		color:#0066bf;
+	}
+	
+	
+	.post-meta {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    color: #bbb;
+    margin-bottom: .3em;
+}
+/*.post-meta .post-date {
+    float: left;
+}*/
+.post-meta .post-category {
+    float: left;
+    margin-right: 6px;
+}
+
+	.post-category a {
+		color:#0066bf;	
+		font-weight:500;
+	}
+
 	
 	.blog-description {
 		height:auto;
@@ -82,10 +123,10 @@
 		/* for set '...' in absolute position */
 		position: relative; 
 		/* use this value to count block height */
-		line-height: 2em;
+		line-height: 1.5em;
 		/* max-height = line-height (1.2) * lines max number (3) */
-		max-height: 2em; 
-		min-height:8em;
+		max-height: 1.5em; 
+		min-height:7.5em;
 		/* fix problem when last visible word doesn't adjoin right side  */
 		/* If the last visible word doesn't adjoin right side then this will fix the problem */
 		text-align: justify !important;  
@@ -93,7 +134,7 @@
 		/*padding-left: 1em;*/
 		padding-right: 10px;
 		margin-bottom: 30px;
-		color:#212121;
+		color:#aaa;
 		
 	}
 	
@@ -139,9 +180,9 @@
 	.masonry {
     margin: 1.5em 0;
     padding: 0;
-    -moz-column-gap: 1.5em;
-    -webkit-column-gap: 1.5em;
-    column-gap: 1.5em;
+    -moz-column-gap: 3em;
+    -webkit-column-gap: 3em;
+    column-gap: 3em;
     font-size: .85em;
 	column-count:3;
 }
@@ -160,7 +201,7 @@
 }
 
 
-@media only screen and (min-width: 400px) {
+@media only screen and (max-width: 400px) {
     .masonry {
         -moz-column-count: 1;
         -webkit-column-count: 1;
@@ -168,11 +209,11 @@
     }
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 767px) {
     .masonry {
-        -moz-column-count: 3;
-        -webkit-column-count: 3;
-        column-count: 3;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
     }
 }
 

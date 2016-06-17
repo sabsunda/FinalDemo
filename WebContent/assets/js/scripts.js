@@ -20,6 +20,25 @@
 		}
 	]);
 	
+	app.run(function($rootScope) {
+		$rootScope.posts = "";
+		$rootScope.currentArticle = "";
+		$rootScope.convertJSONDateToJavascriptDate = function(jsonDate){
+			var monthNames = ["January", "February", "March", "April", "May", "June",
+			  "July", "August", "September", "October", "November", "December"
+			];
+
+			var newdate;
+			var dateObj = new Date(jsonDate);
+			var month = dateObj.getUTCMonth() + 1; //months from 1-12
+			var day = dateObj.getUTCDate();
+			var year = dateObj.getUTCFullYear();
+
+			newdate = day + " " + monthNames[month] + " " + year;
+			return newdate;
+		}
+	});
+	
 	app.controller('TopWrapperController',function($http, $log, $scope, $window){
 		var controller = this;
 		$scope.categories=[{name:"Society", info:"Culture, Social Openion ...", urlPath: "assets/img/society.jpg"},
@@ -240,30 +259,70 @@
 	});
 	
 	
-	app.controller('BlogPostController',function($http, $log, $scope){
-		$scope.posts = [];
+	app.controller('BlogPostController',function($http, $log, $scope,$rootScope,$location){
+		$scope.currentPage = 0;
+		$scope.itemsPerPage = 9;
+		
 		$scope.getPosts = function() {
 			$log.debug("Getting all blog posts...");
-			$http.get('rest/post/Culture').success(function(data, status, headers, config) {
-				$scope.posts = data;
+			$http.get('rest/post').success(function(data, status, headers, config) {
+				$rootScope.posts = data;
 			}).error(function(data, status, headers, config) {
 				$log.debug("Failed to get blog posts...");
 			});
 		}
 
-		$scope.convertJSONDateToJavascriptDate = function(jsonDate){
+
+		$scope.article = "";
+		$scope.showArticle = function(index){
+			$scope.article = $rootScope.posts[index];	
+			$rootScope.currentArticle = $scope.currentPage* $scope.itemsPerPage+ index;
 			
-			return new Date(jsonDate).toUTCString();
+			var Indata = {'field': "currentArticle", 'value': $rootScope.currentArticle};
+			
+		  	$http.post('rest/session',Indata).success(function(data, status, headers, config) {
+				$log.debug("Successfully saved the current article index in session object");
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to save current article index in session object...");
+			});
+
+			$location.path("/BlogPostInfo");
 		}
 		
+		
+		$scope.pageChangeHandler = function(num) {
+			console.log('Article page changed to ' + num);
+			$scope.currentPage = num-1;
+		};
+  
 		$scope.getPosts();
 
 	});
 
-	app.controller('BlogPostInfoController',function($http, $log, $scope){
+	app.controller('BlogPostInfoController',function($http, $log, $scope,$rootScope,$window){
+		/*if( $rootScope.posts === ""){
+			$http.get('rest/session/currentArticle').success(function(data, status, headers, config) {
+				$log.debug("Successfully got the currentArticle from session object...");
+				$rootScope.currentArticle = data;
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to get currentArticle from session object...");
+			});
+		}
+		
+		if( $rootScope.posts === ""){
+			$log.debug("Getting all blog posts...");
+			$http.get('rest/post').success(function(data, status, headers, config) {
+				$rootScope.posts = data;
+				$location.path("/BlogPostInfo");
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to get blog posts...");
+			});
+		}*/
+		
+		
+			
 
 	});
 
 	
 })();
-

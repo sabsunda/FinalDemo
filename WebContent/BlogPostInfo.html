@@ -1,14 +1,14 @@
-<div class = "article" ng-controller="BlogPostInfoController as blogPostInfoController">
+<div class ="article" ng-controller="BlogPostInfoController as blogPostInfoController" ng-init='article=posts[currentArticle]'>
 	
-	<h1 class="post-title" style="color:black">  Must visit Kerala destinations for nature lovers</h1>
+	<h1 class="post-title" style="color:black"> {{article.title}}</h1>
 	<p class = "post-by">
 		BY
-		<span class = "author"><strong> SAI KARTHIK REDDY MEKALA</strong></span> 
-		<span class = "published-date"> 4 JUNE, 2016</span> 
+		<span class = "author"><strong> {{article.by}}</strong></span> 
+		<span class = "published-date" ng-init='date=convertJSONDateToJavascriptDate(article.date_created)'> {{date}}</span> 
 	</p>	
-	<div class = "post-body">
-		<img src="assets/img/keralajpg.jpg" class="img-rounded img-responsive" alt="Smiley face">
-		<p> Kerala speaks a lot about the nature, the un-destroyed forest reserves and the beautiful landscapes takes us through the true nature of earth. Though my trip was very short to Kerala I had a chance to view some of the natural beauties of this city. Here are the top four must-visit destinations for nature lovers. All of these destinations will be covered when you choose tour packages to Kerala.</p>
+	<div class = "post-body" ng-repeat="paragraph in article.descriptions">
+		<img ng-show = "{{ paragraph.urls === null ? false:true}}" ng-src="{{paragraph.urls[0].url}}" class="img-responsive" alt="">
+		<p>{{paragraph.description}} </p>
 	</div>
 	<p class = "post-tags">
 		<span>Tags:</span>
@@ -26,27 +26,25 @@
 
 	
 	<ul class = "post-nav group">
-		<li class = "next">
-			
-			<a href = ""> 
+		<li class = "next" ng-init='n_article=currentArticle+1' ng-show = "{{ currentArticle+1 > posts.length-1 ? false:true}}" >
+			<a href = "" ng-click = 'n_article=currentArticle+1'> 
 				<i class="fa fa-chevron-right" aria-hidden="true"></i>
 				<strong> Next Story </strong>
-				<span> Be Transfered In your Next Visit to Lemang, Indonesia</span>
+				<span> {{posts[n_article].title}}</span>
 			</a>
 		</li>
-		<li class = "previous"> 
-			
-			<a href = ""> 
+		<li class = "previous" ng-init='p_article=currentArticle-1' ng-show = "{{ currentArticle-1 < 0 ? false:true}}"> 
+			<a href = "" ng-click = 'p_article=currentArticle-1'> 
 				<i class="fa fa-chevron-left" aria-hidden="true"></i>
 				<strong> Previous Story </strong>
-				<span> Be Transfered In your Next Visit to Lemang, Indonesia</span>
+				<span> {{posts[p_article].title}}</span>
 			</a>
 		</li>
 	</ul>
 	
 	
 
-	<h3 class = "heading">
+	<!--<h3 class = "heading">
 		<i class = "fa fa-hand-o-right" aria-hidden="true"> </i>
 		You may also like
 	</h3>	
@@ -55,7 +53,7 @@
 			<article class="post">
 				<div class="post-thumpnail">
 					<a href="">
-						<img src="assets/img/IMG_6493.jpg" class="img-rounded img-responsive" alt="Smiley face">	
+						<img src="assets/img/IMG_6493.jpg" class="img-responsive" alt="Smiley face">	
 					</a>
 				</div>
 				<div class="related-inner"> 
@@ -68,7 +66,7 @@
 			<article class="post">
 				<div class="post-thumpnail">
 					<a href="">
-						<img src="assets/img/IMG_7349.jpg" class="img-rounded img-responsive" alt="Smiley face">	
+						<img src="assets/img/IMG_7349.jpg" class="img-responsive" alt="Smiley face">	
 					</a>
 				</div>
 				<div class="related-inner"> 
@@ -81,7 +79,7 @@
 			<article class="post">
 				<div class="post-thumpnail"> 
 					<a href="">
-						<img src="assets/img/Puri_Ratha_Yatra_in_Odisha.jpg" class="img-rounded img-responsive" alt="Smiley face">	
+						<img src="assets/img/Puri_Ratha_Yatra_in_Odisha.jpg" class="img-responsive" alt="Smiley face">	
 					</a>			
 				</div>
 				<div class="related-inner"> 
@@ -91,7 +89,7 @@
 			</article>
 		</li>		
 	</ul>
-	
+	-->
 	<section id="comments">
 		<div id="respond" class="comment-respond">
 			<h3 id ="reply-title" class="reply-title"> Leave a reply </h3> 

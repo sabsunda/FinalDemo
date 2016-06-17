@@ -17,7 +17,9 @@ public class ServicesFactory {
 	 */
 	public static Datastore getMongoDB(){
 		if(mongoTL.get()==null){
+			/*MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");*/
 			MongoClientURI connectionString = new MongoClientURI("mongodb://173.36.55.213:27017");
+			
 			MongoClient mongoClient = new MongoClient(connectionString);	
 			Morphia morphia = new Morphia();
 			morphia.mapPackage("com.mydomain.model");

@@ -45,6 +45,13 @@ public class PostService {
 		return postDao.getPostsByCategory(category);
 	}
 	
+	@GET
+	@Path("/{category}/{tag}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Post> getPostsByCategoryAndtag(@PathParam("category") String category,@PathParam("tag") String tag) {
+		return postDao.getPostsByCategoryAndtag(category,tag);
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void createPost(Post p){
