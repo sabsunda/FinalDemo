@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
 		<link rel="stylesheet" href="assets/css/bloginfo.css">
 		<link rel="stylesheet" href="assets/css/blogpost.css">
-		
+		<link rel="stylesheet" href="assets/css/addpost.css">
 		<!-- Javascript -->
 		
 		<script src="bower_components/jquery/dist/jquery.js"></script>
@@ -63,12 +63,24 @@
 						<ul class="nav navbar-nav navbar-right">
 						
 							<li>
-								<a href=""><strong>Home</strong></a>
+								<a href ng-click = 'getArticle()'><strong>Home</strong></a>
 								<a id = "signup" href="" ng-click = "toggleSignUpSignOut(signupText)"><strong>{{signupText}}</strong></a>
-								<i class="fa fa-plus" aria-hidden="true">Post</i>
+								
+								<i class="fa fa-plus" aria-hidden="true" ng-click = 'addPost()'>Post</i>
 								<a href=""><strong>Contact</strong></a>
 							</li>
 							
+							<!--<li style = "padding-top:3px">
+							<div class="dropdown" style = "display=inline;background:none;border:none">
+								  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><strong>Signup</strong>
+								  <span class="caret"></span></button>
+								  <ul class="dropdown-menu">
+									<li><a href="#">HTML</a></li>
+									<li><a href="#">CSS</a></li>
+									<li><a href="#">JavaScript</a></li>
+								  </ul>
+								</div>
+							</li>-->
 							<li>
 								<div class="search">
 									<button type="submit" class="btn btn-info fa fa-search"></button>
@@ -81,7 +93,30 @@
 				</div>
 			</nav>
 	
+			<div>
+			  <!--<h2>Small Modal</h2>-->
+			  <!-- Trigger the modal with a button -->
+			  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>-->
 
+			  <!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog modal-sm">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+					  <h4 class="modal-title">Warning!!!</h4>
+					</div>
+					<div class="modal-body">
+					  <p>You must be signed in to post the article</p>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			
 			<div class = "signup-page" ng-show = "showSignUpPage">
 				<div id="successful_login" class="fix-middle">
 				  <div class="container text-center">
@@ -161,9 +196,15 @@
 				  </div>
 				</div>				
 			</div>
+			
+
+
 			<div class="content">
-				<div class ="container">
-					<div ng-view></div>
+
+				<div class ="container" ng-click = 'disableSignupPage()'>
+			
+			
+					<div class="ng-view" autoscroll="true"></div>
 				</div>
 			</div>
 			

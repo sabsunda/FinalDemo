@@ -1,0 +1,103 @@
+
+#postform {
+    background: #f1f1f1;
+    padding: 10px 20px 20px;
+    margin-bottom: 15px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#postform p.post-form-title{
+    width: 70%;
+    float: left;
+	/*margin-bottom: 100px;*/
+}
+#postform p.post-form-title input{
+	height:100px;
+}
+
+#postform p.post-form-title-picture {
+    width: 26%;
+    float: right;
+}
+
+.post-form-title-section p {
+
+    display: inline-block;
+
+}
+#postform p.post-form-title-picture input{
+	padding-bottom:15px;
+}
+
+
+
+#postform p.post-form-pargraph{
+    width: 70%;
+    float: left;
+}
+#postform p.post-form-image {
+    width: 26%;
+    float: right;
+}
+
+#postform p.post-form-image input{
+	padding-bottom:15px;
+}
+
+#postform p.post-form-category{
+    width: 48%;
+    float: left;
+}
+#postform p.post-form-tag {
+    width: 48%;
+    float: right;
+}
+
+.post-form-tag input{
+	background:white;
+}
+
+#postform label {
+    padding: 6px 0;
+    font-weight: 600;
+    display: block;
+}
+
+#postform textarea {
+    height: 200px;
+}
+#postform input[type=text], #postform textarea {
+    max-width: 100%;
+    width: 100%;
+	    background: white;
+}
+
+#postform p.form-submit, .logged-in #postform p.comment-form-comment {
+    margin-top: 10px;
+}
+.form-submit> input{
+	background-color: #0066bf;
+}
+
+.post-form-description p {
+
+    display: inline-block;
+
+}
+
+.post-form-bio,.form-add-paragraph,.form-submit{
+	clear:both;
+}
+
+.post-form-author p.post-form-by input{
+	height:100px;
+}
+.post-form-author p.post-form-by{
+    width: 70%;
+    float: left;
+}
+.post-form-author p.post-form-thumbnail {
+    width: 26%;
+    float: right;
+}

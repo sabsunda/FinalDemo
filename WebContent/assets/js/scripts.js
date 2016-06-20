@@ -14,6 +14,10 @@
 					templateUrl:'blogpost.html',
 					controller:'BlogPostController'
 				}).
+				when('/addpost',{
+					templateUrl:'addpost.html',
+					controller:'AddPostController'
+				}).
 				otherwise({
 					redirectTo:'/blogpost'
 				});
@@ -79,6 +83,19 @@
 		//Check whether the user is already autneticated
 		$scope.signupText = "";
 		$scope.showSignUpPage = false;
+		
+		
+		$scope. addPost = function(){
+			$http.get('rest/signup').success(function(data, status, headers, config) {
+					$log.debug(data);
+					$location.path("/addpost");
+				}).error(function(data, status, headers, config) {
+
+					$('#myModal').modal('show');	
+					$log.debug("Issue in signout....");
+
+				});
+		}
 		
 		$scope.getArticle = function(){
 			article.getPosts($log, $rootScope,$http);
@@ -459,5 +476,130 @@
 		} 
 
 	});
+	
+	app.controller('AddPostController',function($http, $log, $scope,$rootScope,$location){
+		
+		$scope.readURL = function (input,width,height) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+				/*
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+						
+						
+                };*/
+				
+				var nextElement = input.parentNode.children[1];
+				
+				reader.onload = function (e) {
+                    $(nextElement)
+                        .attr('src', e.target.result)
+                        .width(width)
+                        .height(height);
+						
+						
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+		
+		$scope.addParagraph = function(){
+			var myEl = angular.element( document.querySelector( '#post-form-description' ) );
+			myEl.append('<p class = "post-form-pargraph"><label> Description </label><textarea id="paragraph" ng-model="paragraph" ng-model="paragraph" cols="45" rows="16" maxlength="65525" aria-required = "true" required="required"> </textarea></p>');
+
+			
+			
+			myEl.append('<p class = "post-form-image"> <input type="file" value="Upload" ng-model="paragraph-picture" onchange="angular.element(this).scope().readURL(this)" /> <img id="blah" src="src="assets/img/default.png" style = "width:300px;height:200px" alt="" /> </p>');     
+		}
+		
+		var uploadFile = function(files) {
+			var fd = new FormData();
+			//Take the first selected file
+			fd.append("file", files[0]);
+
+			$http.post('rest/files/upload', fd, {
+				withCredentials: true,
+				headers: {'Content-Type': undefined },
+				transformRequest: angular.identity
+			}).success(function(data, status, headers, config) {
+				$log.debug("Successfully uploaded the image");
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed to uploaded the image...");
+			});
+
+		};
+		
+		$scope.savePosts = function(){
+			var post= {};
+			
+			post.title = $scope.title;
+			
+			var title_picture = angular.element("#title_picture")[0];
+			
+			post.imageInfos = [{}];
+			if (title_picture.files && title_picture.files[0]) {
+				uploadFile(title_picture.files);
+				post.imageInfos[0].url = "assets/img/" + title_picture.files[0].name;;
+			}else{
+				post.imageInfos[0].url ="";
+			}
+			
+			var description = angular.element("#post-form-description")[0];
+			post.descriptions = [{},{},{}];
+			
+			for (var i=0; i< description.children.length; i++) {
+				if(description.children[i].className ==="post-form-pargraph"){
+					var paragraph = description.children[i].children[1].value;
+					post.descriptions[Math.floor(i / 2)].description = 	paragraph;	
+				}else if( description.children[i].className ==="post-form-image"){
+					var picture = description.children[i].children[0];
+					var urls = [{}];
+					
+					if (picture.files && picture.files[0]) {
+						uploadFile(picture.files);
+						urls[0].url = "assets/img/" + picture.files[0].name;
+					}else{
+						urls[0].url = ""
+					}
+					
+					post.descriptions[Math.floor(i / 2)].urls = urls;	
+				}
+			}
+			
+			post.category = $scope.category;
+			post.tag = $scope.tag;
+			post.by = $scope.author;
+			
+			var author_picture = angular.element("#author_picture")[0];
+			
+			if (author_picture.files && author_picture.files[0]) {
+				uploadFile(author-picture.files);
+				post.thumbnail = "assets/img/" + author_picture.files[0].name;
+			}else{
+				post.thumbnail ="";
+			}
+			
+			post.bio = $scope.author_bio;
+			post.date_created = new Date();
+			post.likes = 0;
+			post.comments = [];
+			
+			var myJsonString = angular.toJson(post);
+				
+		  	$http.post('rest/post',myJsonString).success(function(data, status, headers, config) {
+				$log.debug("Successfully updated the comments..." + $scope.subscribe_comments + $scope.subscribe_blog);
+			
+			}).error(function(data, status, headers, config) {
+				$log.debug("Failed update comments...");
+			});
+		}
+  
+	});
+
 	
 })();
